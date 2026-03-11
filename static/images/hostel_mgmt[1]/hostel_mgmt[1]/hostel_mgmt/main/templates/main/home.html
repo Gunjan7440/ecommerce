@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  body {
+    background-image: url("{% static 'images/bg.jpg' %}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+  }
+
+  .overlay-box {
+    background-color: rgba(255, 255, 255, 0.85); /* translucent white */
+    padding: 30px;
+    margin: 60px auto;
+    border-radius: 15px;
+    max-width: 800px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  }
+</style>
+
+<div class="overlay-box">
+  <h2>Welcome to Hostel Management System</h2>
+  <p>This is the home page.</p>
+</div>
+
+{% endblock %}

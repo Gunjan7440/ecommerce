@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container text-center mt-5">
+    <div class="card p-5 shadow-lg">
+        <h2 class="text-success">✅ Payment Successful!</h2>
+
+        <p class="mt-3">
+            Your order has been placed successfully.
+        </p>
+
+        <h5>Transaction ID:</h5>
+        <p><strong>{{ order.transaction_id }}</strong></p>
+
+        <a href="{% url 'home' %}" class="btn btn-primary mt-4">
+            Continue Shopping
+        </a>
+    </div>
+</div>
+
+{% endblock %}

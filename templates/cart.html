@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="mb-4 fw-bold">
+        Your Cart ({{ total_items }} items)
+    </h2>
+
+    {% if items %}
+
+    <div class="card shadow-lg border-0">
+        <div class="card-body p-4">
+
+            <table class="table align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Product</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Quantity</th>
+                        <th class="text-center">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="{{ item.product.image.url }}"
+                                     width="70"
+                                     height="70"
+                                     class="rounded me-3">
+                                <div>
+                                    <h6 class="mb-0">{{ item.product.name }}</h6>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td class="text-center">
+                            ₹{{ item.product.price }}
+                        </td>
+
+                        <td class="text-center">
+                            {{ item.quantity }}
+                        </td>
+
+                        <td class="text-center fw-bold text-success">
+                            ₹{{ item.product.price|floatformat:2|add:"0"|floatformat }}
+                            <!-- or -->
+                            ₹{{ item.product.price|floatformat:2|add:item.quantity }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="text-end mt-4">
+                <h4 class="fw-bold">
+                    Grand Total: ₹{{ total }}
+                </h4>
+
+                <a href="{% url 'checkout' %}"
+                   class="btn btn-success btn-lg mt-3 px-5">
+                   Proceed to Payment
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    {% else %}
+
+    <div class="text-center mt-5">
+        <img src="https://cdn-icons-png.flaticon.com/512/2038/2038854.png"
+             width="120"
+             class="mb-3">
+        <h4>Your cart is empty 🛒</h4>
+        <a href="{% url 'home' %}" class="btn btn-primary mt-3">
+            Continue Shopping
+        </a>
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
